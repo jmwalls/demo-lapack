@@ -1,0 +1,4 @@
+*.o
+lapack-demo
+
+*.swp
