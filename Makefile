@@ -1,14 +1,19 @@
 CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=-llapack -lblas
+CFLAGS=-c -Wall --std=gnu++0x
+LDFLAGS=-llapack
+
+INC=-I/usr/local/include/eigen3
 
 all: lapack-demo
 
-lapack-demo: demo.o
-	$(CC) demo.o $(LDFLAGS) -o lapack-demo
+lapack-demo: demo.o linalg.o
+	$(CC) demo.o linalg.o $(LDFLAGS) -o lapack-demo
 
-demo.o: demo.cpp
-	$(CC) $(CFLAGS) demo.cpp
+demo.o: linalg.o demo.cpp
+	$(CC) $(CFLAGS) $(INC) demo.cpp
+
+linalg.o: linalg.h linalg.cpp
+	$(CC) $(CFLAGS) $(INC) linalg.cpp
 
 clean:
 	rm -rf *.o lapack-demo

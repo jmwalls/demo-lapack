@@ -12,8 +12,11 @@ if __name__ == '__main__':
     print 'eigenvalues of A:'
     evals = np.linalg.eigvals (A)
     evals.sort ()
+    print '\t',
     for ev in evals:
         print ev,
     print
+
+    print 'determinant: ', np.linalg.det (A)
 
     sys.exit (0)
